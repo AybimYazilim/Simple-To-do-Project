@@ -45,7 +45,11 @@ actor Assistant {
     output # "\n"
   };
 
-  
+  public func clearCompleted() : async () {
+    todos := Map.mapFilter<Nat, ToDo, ToDo>(todos, Nat.equal, natHash, 
+      func(_, todo) { if (todo.completed) null else ?todo });
+  };
+
+
 
 };
-  
